@@ -47,7 +47,7 @@ class App extends Component {
         <CssBaseline />
         <Router>
           <Routes>
-            <Route exact path='/shopify-challenge-new/' element={< Home />}></Route>
+            <Route exact path='/shopify-challenge/' element={< Home />}></Route>
           </Routes>
         </Router>
       </ThemeProvider>
