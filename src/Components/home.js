@@ -121,7 +121,6 @@ function Home ()
             headers: {'Accept': 'application/json', "Content-Type": "application/json"}
 		});
 
-        const status = devResponse.status;
         const resData = await devResponse.json();
         console.log(JSON.stringify(resData));
 
