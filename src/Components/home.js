@@ -99,15 +99,6 @@ function Home ()
             prompt: curInput,
             response: aiData.data.choices[0].text
         }
-
-        // Upload prompt and response (aiData) to MySQL server
-        const devResponse = await fetch("/api/AIManager/submitPost", {
-            method: "POST",
-            headers: {"Content-Type": "application/json" },
-            body: JSON.stringify(submissionData)
-		});
-
-        // const status = await devResponse.status;
     }
 
     let newPostArray = []
@@ -158,8 +149,8 @@ function Home ()
 		}
 	}
 
-    useEffect(() => {
-		if(didPostsLoad == false)
+    useEffect(([didPostsLoad, spawnPosts, populatePage]) => {
+		if(didPostsLoad === false)
 		{
 			spawnPosts(); // call API loadPosts
 			populatePage(); // populate the page from spawnPosts
