@@ -45,7 +45,7 @@ class App extends Component {
     return (
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        <Router basename={process.env.PUBLIC_URL}>
+        <Router basename={process.env.PUBLIC_URL + '/'}>
           <Routes>
             <Route exact path='/shopify-challenge/' element={< Home />}></Route>
           </Routes>
