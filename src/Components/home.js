@@ -79,6 +79,7 @@ function Home ()
             apiKey: OpenAIConfig.OPENAI_SECRET,
         });
 
+        // Declare a new OpenAI instance
         const openai = new OpenAIApi(configuration);
 
         // Fetch to openai 
