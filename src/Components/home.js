@@ -192,6 +192,7 @@ function Home ()
                 >
                         Submit
                 </Button>
+                <p>Hit refresh for a response!</p>
             </Box>
             <Box>
                 <div className='card-list'>
