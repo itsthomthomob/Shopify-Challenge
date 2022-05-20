@@ -149,7 +149,7 @@ function Home ()
 		}
 	}
 
-    useEffect(([didPostsLoad, spawnPosts, populatePage]) => {
+    useEffect(() => {
 		if(didPostsLoad === false)
 		{
 			spawnPosts(); // call API loadPosts
