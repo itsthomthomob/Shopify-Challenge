@@ -1,7 +1,7 @@
 {
   "name": "shopify-challenge",
   "version": "0.1.0",
-  "homepage": "h.",
+  "homepage": "https://marvelous-jalebi-3ac954.netlify.app",
   "private": false,
   "dependencies": {
     "@emotion/react": "^11.9.0",
