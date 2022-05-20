@@ -7,20 +7,16 @@
 
 // Import react and react elements
 import React from 'react';
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
 
 // MUI Component imports
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import CardHeader from '@mui/material/CardMedia';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 
 // MUI Theme Imports
 import { styled } from '@mui/material/styles';
@@ -55,7 +51,6 @@ function Home ()
     
     // Submission data
     let curInput;
-    let curResponse = "";
     
     const [curPostData, setPostData] = React.useState(null);
 	const [didPostsLoad, setDidPostsLoad] = React.useState(false);
@@ -76,7 +71,7 @@ function Home ()
         curInput = input.target.value
 	}
 
-    // Test connection to MongoDB server
+    // Upload prompts and responses to MySQL server for retrieving and loading prompts
     async function onPromptSubmission()
     {
         const { Configuration, OpenAIApi } = require("openai");
@@ -85,6 +80,8 @@ function Home ()
         });
 
         const openai = new OpenAIApi(configuration);
+
+        // Fetch to openai 
         const aiResponse = await openai.createCompletion("text-curie-001", {
             prompt: curInput,
             temperature: 0.5,
@@ -94,7 +91,6 @@ function Home ()
             presence_penalty: 0.0
         });
 
-        const aiStatus = await aiResponse.status;
         const aiData = await aiResponse;
         console.log(JSON.stringify(aiData.data.choices[0].text));
         curResponse = aiData.data.choices[0].text;
@@ -105,6 +101,7 @@ function Home ()
             response: aiData.data.choices[0].text
         }
 
+        // Upload prompt and response (aiData) to MySQL server
         const devResponse = await fetch("/api/AIManager/submitPost", {
             method: "POST",
             headers: {"Content-Type": "application/json" },
@@ -115,6 +112,8 @@ function Home ()
     }
 
     let newPostArray = []
+
+    // Load posts from MySQL server
     async function spawnPosts()
     {
         const devResponse = await fetch("/api/AIManager/loadPosts", {
