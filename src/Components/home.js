@@ -100,6 +100,12 @@ function Home ()
             prompt: curInput,
             response: aiData.data.choices[0].text
         }
+
+        const devResponse = await fetch("/api/AIManager/submitPost", {
+            method: "post",
+            headers: {'Accept': 'application/json', "Content-Type": "application/json"},
+            body: JSON.stringify(submissionData)
+		});
     }
 
     let newPostArray = []
