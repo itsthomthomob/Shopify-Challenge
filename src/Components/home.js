@@ -93,7 +93,6 @@ function Home ()
 
         const aiData = await aiResponse;
         console.log(JSON.stringify(aiData.data.choices[0].text));
-        curResponse = aiData.data.choices[0].text;
 
         const submissionData = 
         {
